@@ -84,7 +84,7 @@ function TabInfo(props) {
                 component="p"
                 className={classes.thongTinInfo}
               >
-                Nguyễn Hoàng Tín
+                Nairubi 12 Tuổi Rưỡi
               </Typography>
             </div>
             <div className={classes.thongTinLeftBox}>
