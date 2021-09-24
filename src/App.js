@@ -5,7 +5,13 @@ import Home from "./containers/Home";
 import Auth from "./containers/Auth";
 import { routeAdmin, routeAuth, routeHome } from "./routes";
 import Error from "./containers/Error";
-
+//
+import Login from "containers/shared/Auth/Login/Login";
+import PageNotFound from "containers/shared/PageNotFound/PageNotFound";
+import AdminLayout from "layouts/AdminLayout";
+// import { Route, Switch } from "react-router-dom";
+import { adminRoutes, clientRoutes } from "routes/index";
+import ClientLayout from "layouts/ClientLayout";
 const showLayoutAdmin = (routes) => {
   if (routes && routes.length > 0) {
     return routes.map((item, index) => {
@@ -52,6 +58,20 @@ const showLayoutAuth = (routes) => {
 };
 
 function App() {
+  const renderLayout = (routes, Layout) => {
+    return routes.map((route) => {
+      const { path, component, exact, isPrivate } = route;
+      return (
+        <Layout
+          key={component}
+          path={path}
+          component={component}
+          exact={exact}
+          isPrivate={isPrivate}
+        />
+      );
+    });
+  };
   return (
     <div className="App">
       <BrowserRouter>
@@ -61,7 +81,10 @@ function App() {
           {showLayoutHome(routeHome)}
 
           {showLayoutAuth(routeAuth)}
-
+          {renderLayout(clientRoutes, ClientLayout)}
+          {renderLayout(adminRoutes, AdminLayout)}
+          <Route path="/login" component={Login} />
+          <Route path="*" component={PageNotFound} />
           {/* Không tìm ra trang nào */}
           <Route path="" component={Error} />
         </Switch>
