@@ -18,7 +18,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { LocalSeeOutlined } from "@material-ui/icons";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actLogoutUser } from "containers/shared/Auth/Login/module/action";
 const useStyles = makeStyles((theme) => ({
   right: {
@@ -139,7 +139,8 @@ function TopBarHomeRight(props) {
     JSON.parse(localStorage.getItem("dangNhap"))
   );
   const dispatch = useDispatch();
-  const history=useHistory()
+  const history = useHistory();
+  const { currentUser } = useSelector((state) => state.authUserReducer);
   return (
     <div className={right}>
       <div className={accountContainer}>
@@ -186,7 +187,7 @@ function TopBarHomeRight(props) {
                 cancelButtonColor: "#8bc541",
               }).then((result) => {
                 if (result.isConfirmed) {
-              history.push('/')
+                  history.push("/");
 
                   Swal.fire({
                     title: "Đã đăng xuất",
@@ -199,16 +200,21 @@ function TopBarHomeRight(props) {
                   setUser(null);
 
                   dispatch(actLogoutUser());
-
                 }
               });
-
             }}
           >
             <ExitToAppIcon className={classes.icon} fontSize="large" />
             <Typography className={classes.text} variant="h5">
               Đăng xuất
             </Typography>
+            {currentUser.maLoaiNguoiDung === "QuanTri" ? (
+              <Typography className={classes.text} variant="h5">
+                Quản lý trang
+              </Typography>
+            ) : (
+              ""
+            )}
           </div>
         ) : (
           <Link to="/register" className={classes.accountBox}>
