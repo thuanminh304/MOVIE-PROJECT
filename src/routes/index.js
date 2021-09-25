@@ -12,9 +12,12 @@ import EditUser from "containers/Admin/User/EditUser";
 import User from "containers/Admin/User/User";
 import Home from "containers/client/Home/Home";
 import AddNewMovie from "containers/Admin/Movie/AddNewMovie";
+import Purchase from "../containers/Home/MovieChair/Purchase";
+
 export const routeHome = [
   { exact: true, path: ["/", "/home"], component: HomePage },
   { exact: false, path: "/booking-detail/:maPhim", component: BookingDetail },
+  {exact:false,path:"/purchase/:maLichChieu",component: Purchase}
 ];
 
 export const routeAdmin = [];

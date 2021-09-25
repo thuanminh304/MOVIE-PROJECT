@@ -423,7 +423,7 @@ function TheaterCluster(props) {
                             (childItem, childIndex) => {
                               return (
                                 <Link
-                                  to="/"
+                                  to={`/purchase/${childItem.maLichChieu}`}
                                   key={childItem.maLichChieu}
                                   className={classes.dateTimeLink}
                                 >

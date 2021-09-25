@@ -5,6 +5,7 @@ import { theaterClusterReducer } from "../components/Theater/TheaterCluster/modu
 import authUserReducer from "containers/shared/Auth/Login/module/reducer";
 import movieEditReducer from "containers/Admin/Movie/module/reducer";
 import allUserReducer from "containers/Admin/User/module/reducer";
+import { movieShowtimesReducer } from "../containers/Home/MovieChair/Purchase/modules/reducer";
 export const rootReducer = combineReducers({
   movieListReducer,
   theaterSystemReducer,
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
   authUserReducer,
   allUserReducer,
   movieEditReducer
+  movieShowtimesReducer,
 });

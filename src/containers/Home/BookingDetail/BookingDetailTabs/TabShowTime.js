@@ -328,7 +328,7 @@ function TabShowTime(props) {
                   {item.lichChieuPhim.map((childItem, childIndex) => {
                     return (
                       <Link
-                        to="/"
+                        to={`/purchase/${childItem.maLichChieu}`}
                         key={childItem.maLichChieu}
                         className={classes.dateTimeLink}
                       >

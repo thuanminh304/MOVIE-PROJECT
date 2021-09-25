@@ -3,8 +3,6 @@ import TheaterCluster from "./TheaterCluster";
 import TheaterSystem from "./TheaterSystem";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
-
 import BackNewsImg from "../../assets/back-news.png";
 
 const useStyles = makeStyles((theme) => ({
