@@ -4,7 +4,7 @@ import SignIn from "containers/Auth/SignIn/SignIn";
 import BookingDetail from "../containers/Home/BookingDetail";
 import HomePage from "../containers/Home/HomePage";
 //code Thuan
-import Dashboard from "containers/Admin/Dashboard/Dashboard";
+import Dashboard from "../containers/Admin/Dashboard/Dashboard";
 import ShowTime from "containers/Admin/Dashboard/ShowTime";
 import EditMovie from "containers/Admin/Movie/EditMovie";
 import Movie from "containers/Admin/Movie/Movie";

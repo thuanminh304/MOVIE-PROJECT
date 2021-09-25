@@ -208,14 +208,21 @@ function TopBarHomeRight(props) {
             <Typography className={classes.text} variant="h5">
               Đăng xuất
             </Typography>
-            {currentUser.maLoaiNguoiDung === "QuanTri" ? (
-              <Typography className={classes.text} variant="h5">
-                Quản lý trang
-              </Typography>
-            ) : (
-              ""
-            )}
+    
           </div>
+        //  <div>
+        //  <Divider orientation="vertical" flexItem />
+        //       {currentUser.maLoaiNguoiDung === "QuanTri" ? (
+        //    <div>
+
+        //    <button className="btn btn-info ml-2">Quản lý trang</button>
+        //    </div>
+
+        //  ) : (
+        //    ""
+        //  )}
+        //  </div>
+         
         ) : (
           <Link to="/register" className={classes.accountBox}>
             <PersonAddIcon className={classes.icon} fontSize="large" />
