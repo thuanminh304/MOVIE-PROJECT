@@ -24,6 +24,8 @@ import Swal from "sweetalert2";
 import Alert from "@material-ui/lab/Alert";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
+import {useDispatch} from "react-redux"
+import { actLoginUser } from "containers/shared/Auth/login/module/action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -198,7 +200,7 @@ export default function LogIn() {
         setLoginError(error.response.data);
       });
   };
-
+const dispatch=useDispatch()
   return (
     <div className={classes.root}>
       <Container className={classes.main} component="main" maxWidth="xs">
@@ -298,6 +300,7 @@ export default function LogIn() {
               onClick={(event) => {
                 event.preventDefault();
                 onSubmit(user);
+                dispatch(actLoginUser(user))
               }}
             >
               Đăng Nhập

@@ -3,15 +3,15 @@ import Register from "../containers/Auth/Register";
 import BookingDetail from "../containers/Home/BookingDetail";
 import HomePage from "../containers/Home/HomePage";
 //code Thuan
-import Dashboard from "containers/admin/Dashboard/Dashboard";
-import ShowTime from "containers/admin/Dashboard/ShowTime";
-import EditMovie from "containers/admin/Movie/EditMovie";
-import Movie from "containers/admin/Movie/Movie";
-import AddUser from "containers/admin/User/AddUser";
-import EditUser from "containers/admin/User/EditUser";
-import User from "containers/admin/User/User";
+import Dashboard from "containers/Admin/Dashboard/Dashboard";
+import ShowTime from "containers/Admin/Dashboard/ShowTime";
+import EditMovie from "containers/Admin/Movie/EditMovie";
+import Movie from "containers/Admin/Movie/Movie";
+import AddUser from "containers/Admin/User/AddUser";
+import EditUser from "containers/Admin/User/EditUser";
+import User from "containers/Admin/User/User";
 import Home from "containers/client/Home/Home";
-import AddNewMovie from "../containers/admin/Movie/AddNewMovie";
+import AddNewMovie from "containers/Admin/Movie/AddNewMovie";
 export const routeHome = [
   { exact: true, path: ["/", "/home"], component: HomePage },
   { exact: false, path: "/booking-detail/:maPhim", component: BookingDetail },
@@ -27,12 +27,12 @@ export const routeAuth = [
   
 ]
 export const clientRoutes=[
-  {
-    component: Home,
-    exact: true,
-    isPrivate: false,
-    path: "/",
-  },
+  // {
+  //   component: Home,
+  //   exact: true,
+  //   isPrivate: false,
+  //   path: "/homeAdmin",
+  // },
 ]
 export const adminRoutes = [
   {
