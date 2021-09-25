@@ -12,6 +12,6 @@ export const rootReducer = combineReducers({
   theaterClusterReducer,
   authUserReducer,
   allUserReducer,
-  movieEditReducer
+  movieEditReducer,
   movieShowtimesReducer,
 });

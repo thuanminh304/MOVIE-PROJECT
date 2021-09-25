@@ -12,20 +12,21 @@ import AdminLayout from "layouts/AdminLayout";
 // import { Route, Switch } from "react-router-dom";
 import { adminRoutes, clientRoutes } from "routes/index";
 import ClientLayout from "layouts/ClientLayout";
-const showLayoutAdmin = (routes) => {
-  if (routes && routes.length > 0) {
-    return routes.map((item, index) => {
-      return (
-        <Admin
-          key={index}
-          exact={item.exact}
-          path={item.path}
-          component={item.component}
-        />
-      );
-    });
-  }
-};
+// const showLayoutAdmin = (routes) => {
+//   if (routes && routes.length > 0) {
+//     return routes.map((item, index) => {
+//       return (
+//         <Admin
+//           key={index}
+//           exact={item.exact}
+//           path={item.path}
+//           component={item.component}
+//           isPrivate={item.isPrivate}
+//         />
+//       );
+//     });
+//   }
+// };
 
 const showLayoutHome = (routes) => {
   if (routes && routes.length > 0) {
@@ -36,6 +37,7 @@ const showLayoutHome = (routes) => {
           exact={item.exact}
           path={item.path}
           component={item.component}
+          isPrivate={item.isPrivate}
         />
       );
     });
@@ -51,6 +53,7 @@ const showLayoutAuth = (routes) => {
           exact={item.exact}
           path={item.path}
           component={item.component}
+          isPrivate={item.isPrivate}
         />
       );
     });
@@ -76,12 +79,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          {showLayoutAdmin(routeAdmin)}
+          {/* {showLayoutAdmin(routeAdmin)} */}
 
           {showLayoutHome(routeHome)}
 
           {showLayoutAuth(routeAuth)}
-          {renderLayout(clientRoutes, ClientLayout)}
+          {/* {renderLayout(clientRoutes, ClientLayout)} */}
           {renderLayout(adminRoutes, AdminLayout)}
           <Route path="/login" component={Login} />
           <Route path="*" component={PageNotFound} />

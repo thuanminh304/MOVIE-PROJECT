@@ -9,6 +9,7 @@ export const actGetMovieShowtimesApi = (showTimesID) => {
       method: "GET",
     })
       .then((result) => {
+
         dispatch(actGetMovieShowTimesSuccess(result.data));
       })
       .catch((error) => {

@@ -26,7 +26,7 @@ import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined"
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import {useDispatch} from "react-redux"
 import { actLoginUser } from "containers/shared/Auth/Login/module/action";
-
+import { useParams } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     background: `url(${BackgroundImg})`,
@@ -115,7 +115,7 @@ const StyledTextField = withStyles({
     "& .MuiInputBase-input:-webkit-autofill": {
       WebkitBackgroundClip: "text !important",
       WebkitTextFillColor: "white !important",
-    },
+    },  
   },
 })(TextField);
 
@@ -168,7 +168,6 @@ export default function LogIn() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
   const onSubmit = (data) => {
     console.log("data", data);
     setLoginError(null);

@@ -9,6 +9,8 @@ import {
   Typography,
   withStyles,
 } from "@material-ui/core";
+import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -16,7 +18,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import moment from "moment";
 import TheaterBhdImg from "../../../../assets/Theater/theater-bhd-star.png";
 import { Link } from "react-router-dom";
-
+import {useHistory} from "react-router"
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -248,7 +250,8 @@ function TabShowTime(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  const { currentUser } = useSelector((state) => state.authUserReducer);
+  const history=useHistory()
   return (
     <div className={classes.root}>
       <Tabs
@@ -326,7 +329,7 @@ function TabShowTime(props) {
               <AccordionDetails className={classes.details}>
                 <Box className={classes.dateTimeWrapper}>
                   {item.lichChieuPhim.map((childItem, childIndex) => {
-                    return (
+                    return  (
                       <Link
                         to={`/purchase/${childItem.maLichChieu}`}
                         key={childItem.maLichChieu}
@@ -350,7 +353,8 @@ function TabShowTime(props) {
                           </Typography>
                         </div>
                       </Link>
-                    );
+                    )
+                   
                   })}
                 </Box>
               </AccordionDetails>

@@ -47,7 +47,7 @@ function Purchase(props) {
     let showtimesID = props.match.params.maLichChieu;
     dispatch(actGetMovieShowtimesApi(showtimesID));
   }, []);
-
+  const {currentUser}=useSelector(state=>state.authUserReducer)
   const [num, setnum] = useState(0);
   const [flag, setFlag] = useState(false);
   const [totalMoney, setTotalMoney] = useState(0);
@@ -96,7 +96,7 @@ function Purchase(props) {
     });
   };
   const classes = useStyles();
-  return (
+  return currentUser ? (
     <div className={classes.root}>
       {movieShowtimes.loading ? (
         <LoadingPage/>
@@ -147,7 +147,7 @@ function Purchase(props) {
               </div>
             </div>
           </Grid>
-          {movieShowtimes.data ? (
+          {movieShowtimes.data && (
             <Grid item xs={12} sm={12} md={4}>
               <div className={classes.datveBox}>
                 <div className={classes.sectionSpacing}>
@@ -262,21 +262,21 @@ function Purchase(props) {
                 <Divider variant="middle" />
                 <Button
                   onClick={() => {
-                    if (!localStorage.getItem(CURRENTUSER)) {
-                      Swal.fire({
-                        icon: "error",
-                        title: "Bạn chưa đăng nhập",
-                        text: "Bạn có muốn đăng nhập không ?",
-                        confirmButtonText: "Đồng ý",
-                        showDenyButton: true,
-                        denyButtonText: "Không",
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          history.push("/sign-in");
-                        }
-                      });
-                      return;
-                    }
+                    // if (!localStorage.getItem(CURRENTUSER)) {
+                    //   Swal.fire({
+                    //     icon: "error",
+                    //     title: "Bạn chưa đăng nhập",
+                    //     text: "Bạn có muốn đăng nhập không ?",
+                    //     confirmButtonText: "Đồng ý",
+                    //     showDenyButton: true,
+                    //     denyButtonText: "Không",
+                    //   }).then((result) => {
+                    //     if (result.isConfirmed) {
+                    //       history.push("/sign-in");
+                    //     }
+                    //   });
+                    //   return;
+                    // }
                     if (movieShowtimes.bookingChairList.length === 0) {
                       Swal.fire({
                         icon: "error",
@@ -288,11 +288,12 @@ function Purchase(props) {
                     }
                     let userLogin = JSON.parse(
                       localStorage.getItem(CURRENTUSER)
+                      
                     );
                     let objectAPI = {
                       maLichChieu: props.match.params.maLichChieu,
                       danhSachVe: movieShowtimes.bookingChairList,
-                      taiKhoanNguoiDung: userLogin.taiKhoan,
+                      taiKhoanNguoiDung: currentUser.taiKhoan,
                     };
                     console.log(objectAPI);
                     const action = actBookTicket(objectAPI);
@@ -304,12 +305,15 @@ function Purchase(props) {
                       confirmButtonText: "Đồng ý",
                     }).then((result) => {
                       if (result.isConfirmed) {
+                        history.push('/')
                         dispatch(
                           actGetMovieShowtimesApi(
                             props.match.params.maLichChieu
                           )
                         );
                       } else {
+                        history.push('/')
+
                         dispatch(
                           actGetMovieShowtimesApi(
                             props.match.params.maLichChieu
@@ -324,10 +328,23 @@ function Purchase(props) {
                 </Button>
               </div>
             </Grid>
-          ) : null}
+          ) }
         </Grid>
       )}
     </div>
+  ):(
+    Swal.fire({
+          icon: "error",
+          title: "Bạn chưa đăng nhập",
+          text: "Bạn có muốn đăng nhập không ?",
+          confirmButtonText: "Đồng ý",
+          showDenyButton: true,
+          denyButtonText: "Không",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            history.replace("/sign-in");
+          }
+        })
   );
 }
 export default Purchase;
