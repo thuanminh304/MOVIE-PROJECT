@@ -80,6 +80,8 @@ export default function EditUser() {
   const errors = formik.errors;
   const touched = formik.touched;
   const values = formik.values;
+  //responsive
+  
   return (
     <>
       <h2>Cập nhật thông tin</h2>
@@ -205,16 +207,16 @@ export default function EditUser() {
           />
         </Form.Item>
 
-        <Form.Item style={{ marginLeft: "307px" }}>
+        <Form.Item className="btnEditUser" style={{ marginLeft: "307px" }}>
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button "
+            className="login-form-button btn1"
           >
             Cập nhật
           </Button>
           <NavLink to="/admin/user">
-            <Button type="primary" className="login-form-button ml-5">
+            <Button type="primary" className="login-form-button btn2 ml-5">
               Quay lại
             </Button>
           </NavLink>

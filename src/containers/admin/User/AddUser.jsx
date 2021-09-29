@@ -8,6 +8,7 @@ import { actGetAllUser } from "./module/action";
 import { NavLink } from "react-router-dom";
 import * as yup from "yup";
 import "./User.scss";
+
 //CONTENT
 export default function AddUser() {
   const dispatch = useDispatch();
@@ -77,8 +78,12 @@ export default function AddUser() {
           span: 10,
         }}
       >
-        <Form.Item label="Tài khoản">
-          <Input name="taiKhoan" onChange={formik.handleChange} />
+        <Form.Item label='Tài khoản'>
+          <Input
+            name="taiKhoan"
+            placeholder="Nhập tài khoản"
+            onChange={formik.handleChange}
+          />
           {errors.taiKhoan &&
             touched.taiKhoan &&
             (values.taiKhoan === "" ? (
@@ -93,7 +98,9 @@ export default function AddUser() {
             ))}
         </Form.Item>
         <Form.Item label="Mật khẩu">
-          <Input name="matKhau" onChange={formik.handleChange} />
+          <Input name="matKhau" 
+            placeholder="Nhập mật khẩu"
+            onChange={formik.handleChange} />
           {errors.matKhau &&
             touched.matKhau &&
             (values.matKhau.length < 6 || values.matKhau.length > 10 ? (
@@ -110,7 +117,9 @@ export default function AddUser() {
             ))}
         </Form.Item>
         <Form.Item label="Họ tên">
-          <Input name="hoTen" onChange={formik.handleChange} />
+          <Input name="hoTen"
+            placeholder="Nhập họ tên"
+            onChange={formik.handleChange} />
           {errors.hoTen &&
             touched.hoTen &&
             (values.hoTen === "" ? (
@@ -125,7 +134,9 @@ export default function AddUser() {
             ))}
         </Form.Item>
         <Form.Item label="Số điện thoại">
-          <Input name="soDt" onChange={formik.handleChange} />
+          <Input name="soDt" 
+            placeholder="Nhập số điện thoại"
+            onChange={formik.handleChange} />
           {errors.soDt &&
             touched.soDt &&
             (values.soDt === "" ? (
@@ -140,7 +151,10 @@ export default function AddUser() {
             ))}
         </Form.Item>
         <Form.Item label="Email">
-          <Input name="email" onChange={formik.handleChange} />
+          <Input name="email"
+          
+          placeholder="Nhập email"
+          onChange={formik.handleChange} />
           {errors.email &&
             touched.email &&
             (values.email === "" ? (
@@ -171,16 +185,16 @@ export default function AddUser() {
           )}
         </Form.Item>
 
-        <Form.Item style={{ marginLeft: "295px" }}>
+        <Form.Item className="btnAddUser" style={{ marginLeft: "295px" }}>
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button "
+            className="login-form-button btnAdd"
           >
             Thêm
           </Button>
           <NavLink to="/admin/user">
-            <Button type="primary" className="login-form-button ml-5">
+            <Button type="primary" className="login-form-button btnBack ml-5">
               Quay lại
             </Button>
           </NavLink>

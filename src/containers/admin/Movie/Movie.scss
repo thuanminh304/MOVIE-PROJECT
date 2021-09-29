@@ -1,5 +1,74 @@
+@import "../Dashboard/Variable.scss";
+
 .styleErrors {
   p {
     color: red;
+  }
+}
+
+@include responsive_736{
+  .ant-form{
+    .ant-form-item-label{
+      display: none;
+    }
+    
+  }
+}
+@include responsive_414{
+  .tableMovie{
+    .ant-table {
+      font-size: 10px;
+      margin: 0 -25px 0;
+      .ant-table-thead {
+        tr {
+          th {
+            padding: 0px;
+          }
+        }
+      }
+      .ant-table-tbody {
+        tr {
+          td {
+            padding: 0;
+          }
+        }
+        .ant-table-cell {
+          p {
+            font-size: 8px;
+          }
+        }
+      }
+    }
+  }
+  .btn-search-movie {
+    width: 240px;
+    align-items: flex-end;
+    position: relative;
+    button {
+      position: absolute;
+      top: 0;
+      left: -25px;
+      font-size: 8px;
+    }
+    .ant-input-group-wrapper {
+      margin-left: 55px !important;
+      width: 100% !important;
+      .ant-btn-lg {
+        padding: 0 8px 0;
+      }
+    }
+  }
+  .btnEditMovie{
+    position: relative;
+    button{
+      &:first-child{
+        position: absolute;
+        left: 0;
+      }
+      &:last-child{
+        position: absolute;
+        right: 0;
+      }
+    }
   }
 }

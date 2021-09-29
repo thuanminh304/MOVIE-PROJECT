@@ -63,7 +63,7 @@ export default function Movie(props) {
       title: "Hình ảnh",
       dataIndex: "hinhAnh",
       key: "hinhAnh",
-
+      responsive:['sm'],
       render: (text, movie) => {
         return (
           <img src={movie.hinhAnh} width={50} height={50} alt={movie.tenPhim} />
@@ -86,13 +86,13 @@ export default function Movie(props) {
       title: "Mô tả",
       dataIndex: "moTa",
       key: "moTa",
-
+      responsive:['lg'],
       render: (text, movie) => {
         return movie.moTa.length > 50
           ? movie.moTa.substr(0, 50) + "..."
           : movie.moTa;
       },
-      width: 300,
+      width:"20%"
     },
     {
       title: "Tùy chọn",
@@ -129,7 +129,7 @@ export default function Movie(props) {
           </div>
         );
       },
-      width:"15%"
+      width:"20%"
     },
   ];
   const data = listMovie;
@@ -148,10 +148,10 @@ export default function Movie(props) {
   return listMovie !== [] ? (
     <div>
       <h2>QUẢN LÝ PHIM</h2>
-      <div className="d-flex my-2 ">
+      <div className="d-flex my-2 btn-search-movie ">
         <Link to="/admin/movie/addnew">
           <button
-            className="btn btn-primary "
+            className="btn btn-primary  "
             // onClick={() => history.push("/admin/movie/addnew")}
           >
             Thêm phim
@@ -168,6 +168,7 @@ export default function Movie(props) {
       </div>
 
       <Table
+      className='tableMovie'
         key={listMovie.maPhim}
         columns={columns}
         dataSource={data}

@@ -98,7 +98,8 @@ export default function AddNewMovie() {
         layout="horizontal"
       >
         <Form.Item label="Tên phim">
-          <Input name="tenPhim" onChange={formik.handleChange} />
+          <Input name="tenPhim" 
+          placeholder="Nhập tên phim" onChange={formik.handleChange} />
           {errors.tenPhim &&
             touched.tenPhim &&
             (values.tenPhim === "" ? (
@@ -112,7 +113,7 @@ export default function AddNewMovie() {
             ))}
         </Form.Item>
         <Form.Item label="Trailer">
-          <Input name="trailer" onChange={formik.handleChange} />
+          <Input name="trailer" placeholder="Nhập trailer phim" onChange={formik.handleChange} />
           {errors.trailer && touched.trailer && (
             <div className="styleErrors">
               <p>_ Không được để trống</p>
@@ -121,7 +122,7 @@ export default function AddNewMovie() {
         </Form.Item>
 
         <Form.Item label="Mô tả">
-          <Input name="moTa" onChange={formik.handleChange} />
+          <Input name="moTa" placeholder="Nhập mô tả" onChange={formik.handleChange} />
           {errors.moTa && touched.moTa && (
             <div className="styleErrors">
               <p>_ Không được để trống</p>
@@ -131,10 +132,11 @@ export default function AddNewMovie() {
 
         <Form.Item label="Ngày khởi chiếu">
           <DatePicker
+
             name="ngayKhoiChieu"
             format={"DD-MM-YYYY"}
             onChange={handleChangeDatapicker}
-            placeholder=""
+            placeholder="Ngày khởi chiếu"
           />
           {errors.ngayKhoiChieu && touched.ngayKhoiChieu && (
             <div className="styleErrors">
@@ -143,7 +145,8 @@ export default function AddNewMovie() {
           )}
         </Form.Item>
         <Form.Item  label="Đánh giá">
-          <Input style={{ width: "100px" }} name="danhGia" onChange={formik.handleChange} />
+          <Input style={{ width: "100px" }} name="danhGia"
+          placeholder="Đánh giá" onChange={formik.handleChange} />
           {errors.danhGia &&
             touched.danhGia &&
             (values.danhGia === "" ? (
@@ -163,6 +166,7 @@ export default function AddNewMovie() {
             name="hinhAnh"
             onChange={handleChangeFile}
             accept="image/jpg,image/jpeg,image/gif,image/png"
+            placeholder="Chọn hình ảnh"
           />
           {errors.hinhAnh && touched.hinhAnh && (
             <div className="styleErrors">
@@ -176,7 +180,7 @@ export default function AddNewMovie() {
             alt="..."
           />
         </Form.Item>
-        <Form.Item className="text text-center">
+        <Form.Item className="text text-center btnAddMovie">
           <Button
             type="primary"
             htmlType="submit"

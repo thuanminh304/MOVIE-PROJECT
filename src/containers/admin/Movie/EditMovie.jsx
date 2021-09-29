@@ -113,6 +113,7 @@ const values = formik.values;
       >
         <Form.Item label="Tên phim">
           <Input
+          placeholder="Nhập tên phim"
             name="tenPhim"
             onChange={formik.handleChange}
             value={formik.values.tenPhim}
@@ -131,6 +132,7 @@ const values = formik.values;
         </Form.Item>
         <Form.Item label="Trailer">
           <Input
+          placeholder="Nhập trailer phim"
             name="trailer"
             onChange={formik.handleChange}
             value={formik.values.trailer}
@@ -144,7 +146,7 @@ const values = formik.values;
 
         <Form.Item label="Mô tả">
           <Input
-            name="moTa"
+            name="moTa"placeholder="Nhập mô tả"
             onChange={formik.handleChange}
             value={formik.values.moTa}
           />{" "}
@@ -157,6 +159,7 @@ const values = formik.values;
 
         <Form.Item label="Ngày khởi chiếu">
           <DatePicker
+          placeholder="Ngày khởi chiếu"
             name="ngayKhoiChieu"
             format={"DD-MM-YYYY"}
             onChange={handleChangeDatapicker}
@@ -170,6 +173,7 @@ const values = formik.values;
         </Form.Item>
         <Form.Item label="Đánh giá">
           <Input
+          placeholder="Đánh giá"
             style={{ width: "100px" }}
             name="danhGia"
             onChange={formik.handleChange}
@@ -209,7 +213,7 @@ const values = formik.values;
             src={imgSrc === "" ? editMovieDetail?.hinhAnh : imgSrc}
           />
         </Form.Item>
-        <Form.Item className="text text-center">
+        <Form.Item className="text text-center btnEditMovie">
           <Button
             type="primary"
             htmlType="submit"

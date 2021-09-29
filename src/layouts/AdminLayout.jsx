@@ -1,21 +1,23 @@
 import React from "react";
 import withLayout from "hocs/withLayout";
 import { Layout, Menu } from "antd";
-import {
-  
-  TeamOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Link, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { TeamOutlined, VideoCameraOutlined } from "@ant-design/icons";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { actLogoutUser } from "containers/shared/Auth/Login/module/action";
 const { Header, Content, Footer, Sider } = Layout;
-
 
 function AdminLayout(props) {
   const { currentUser } = useSelector((state) => state.authUserReducer);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const handleLogoutUser = () => {
+    dispatch(actLogoutUser());
+    history.push("/");
+  };
   return currentUser ? (
     currentUser.maLoaiNguoiDung === "QuanTri" ? (
-      <Layout>
+      <Layout id="adminLayout">
         <Sider
           style={{
             overflow: "auto",
@@ -43,9 +45,17 @@ function AdminLayout(props) {
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
           <Header className="site-layout-background" style={{ padding: 0 }}>
-            <Link to="/">
-              <button className="btn btn-success">HOME</button>
-            </Link>
+            <div className="ml-auto">
+              <Link to="/">
+                <button className="btn btn-success">Trang chủ</button>
+              </Link>
+              <button
+                className="btn btn-danger ml-2"
+                onClick={handleLogoutUser}
+              >
+                Đăng xuất
+              </button>
+            </div>
           </Header>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <div

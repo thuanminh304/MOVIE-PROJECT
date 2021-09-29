@@ -1,0 +1,123 @@
+@import './Variable';
+
+
+@include responsive_768 {
+    
+    //showtime
+    .styleImage {
+      p {
+        font-size: 1.5rem !important
+      }
+      img {
+        width: 200px;
+      }
+    }
+    #basic {
+      h3 {
+        font-size: 2rem;
+      }
+    }
+    .btnShowtime {
+      Button {
+        &:first-child {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        }
+        &:last-child {
+          position: absolute;
+          top: 0px;
+          right: -50px;
+        }
+      }
+    }
+  }
+
+
+  @include responsive_736{
+    .styleImage {
+      width: 20% !important;
+      p {
+        font-size: 1rem !important
+      }
+      img {
+        width: 150px;
+    height: 200px
+      }
+    }
+    #basic {
+      h3 {
+        font-size: 1.5rem;
+        margin-left: 75px;
+      }
+      .ant-form-item-label{
+        display: none;
+      }
+      .ant-form-item-control-input{
+        width: 200px;
+        margin-left:10px
+      }
+    }
+    .btnShowtime {
+      Button {
+        &:first-child {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        }
+        &:last-child {
+          position: absolute;
+          top: 0px;
+          right: -20px;
+        }
+      }
+    }
+  }
+
+  @include responsive-414{
+    #adminLayout{
+      .ant-layout-header{
+        button{
+          font-size: 0.7rem;
+        }
+      }
+      .ant-layout-sider-dark{
+        min-width: 100px !important;
+        width: 120px !important;
+
+      }
+      .site-layout{
+        margin-left: 120px !important;
+      }
+    }
+    .styleImage{
+      display: none;
+    }
+    #basic {
+      h3 {
+        font-size: 1.5rem;
+        width: 200px;
+      }
+      .ant-form-item-label{
+        display: none;
+      }
+      .ant-form-item-control-input{
+        width: 200px;
+      }
+    }
+    .btnShowtime {
+      Button {
+        &:first-child {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          
+        }
+        &:last-child {
+          position: absolute;
+          top: 0px;
+          right: -20px;
+        }
+      }
+    }
+  }

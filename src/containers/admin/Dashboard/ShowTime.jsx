@@ -6,7 +6,9 @@ import { useHistory, useParams } from "react-router";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import * as yup from "yup";
-// content
+import './ShowTime.scss'
+
+// content 
 export default function ShowTime() {
   const history = useHistory();
   const params = useParams();
@@ -127,7 +129,7 @@ export default function ShowTime() {
   }
   return (
     <div className="d-flex">
-      <div style={{ width: "50%" }}>
+      <div className="styleImage" style={{ width: "50%" }}>
         <p style={{ fontWeight: "bolder", fontSize: "50px" }}>
           {movie.tenPhim}
         </p>
@@ -201,6 +203,7 @@ export default function ShowTime() {
         </Form.Item>
         <Form.Item label="Giá vé">
           <Select
+          placeholder="Giá vé"
             style={{ width: "100px" }}
             options={[
               {
@@ -223,7 +226,7 @@ export default function ShowTime() {
             <p style={{ color: "red" }}>{formik.errors.giaVe}</p>
           )}
         </Form.Item>
-        <Form.Item className="text-right">
+        <Form.Item className="text-right btnShowtime">
           <Button htmlType="submit" type="primary xl">
             Tạo lịch chiếu
           </Button>

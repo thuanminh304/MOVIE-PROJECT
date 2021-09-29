@@ -59,12 +59,15 @@ export default function User() {
       dataIndex: "email",
       key: "email",
       width: "22%",
+      responsive:['lg']
     },
     {
       title: "Số điện thoại",
       dataIndex: "soDt",
       key: "soDt",
       width: "13%",
+      responsive:['lg']
+
     },
     {
       title: "Loại người dùng",
@@ -77,7 +80,7 @@ export default function User() {
 
         return (
           <Tag color={color} key={user.maLoaiNguoiDung}>
-            {params.toUpperCase()}
+          <p>  {params.toUpperCase()}</p>
           </Tag>
         );
       },
@@ -130,7 +133,7 @@ export default function User() {
   return (
     <>
       <h2>QUẢN LÝ NGƯỜI DÙNG</h2>
-      <div className="d-flex my-3">
+      <div className="d-flex my-3 btn-search-user">
         <Link to="/admin/user/adduser">
           <button className="btn btn-primary">Thêm</button>
         </Link>
@@ -143,7 +146,7 @@ export default function User() {
           allowClear
         />
       </div>
-      <Table columns={columns} dataSource={data} />
+      <Table className="tableUser" columns={columns} dataSource={data} />
     </>
   );
 }

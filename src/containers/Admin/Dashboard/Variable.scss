@@ -1,0 +1,24 @@
+$res-min414: "only screen and (min-width:414px) and(max-width:573px)";
+$res_max736: "only screen and (min-width: 667px) and (max-width: 736px)";
+$res_min768: "only screen and (min-width: 768px) and (max-width: 991px)";
+$res_max1024: "only screen and (min-width: 992px) and (max-width: 1024px)";
+@mixin responsive-414() {
+  @media #{$res-min414} {
+    @content;
+  }
+}
+@mixin responsive_736() {
+  @media #{$res_max736} {
+    @content;
+  }
+}
+@mixin responsive_768() {
+  @media #{$res_min768} {
+    @content;
+  }
+}
+@mixin responsive_1024() {
+  @media #{$res_max1024} {
+    @content;
+  }
+}
