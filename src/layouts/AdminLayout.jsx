@@ -66,7 +66,7 @@ function AdminLayout(props) {
               {props.children}
             </div>
           </Content>
-          <Footer style={{ textAlign: "center" }}>PHIM MOVIE PROJECT</Footer>
+          <Footer style={{ textAlign: "center" }}>MOVIE PROJECT</Footer>
         </Layout>
       </Layout>
     ) : (

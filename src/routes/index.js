@@ -11,7 +11,7 @@ import Movie from "containers/Admin/Movie/Movie";
 import AddUser from "containers/Admin/User/AddUser";
 import EditUser from "containers/Admin/User/EditUser";
 import User from "containers/Admin/User/User";
-import Home from "containers/client/Home/Home";
+// import Home from "containers/client/Home/Home";
 import AddNewMovie from "containers/Admin/Movie/AddNewMovie";
 import Purchase from "../containers/Home/MovieChair/Purchase";
 

@@ -8,18 +8,17 @@ import {
 import React, { useState } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
-import PersonIcon from "@material-ui/icons/Person";
 import clsx from "clsx";
 import { useMediaQuery, useTheme } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import AvatarTix from "../../../assets/LogoHeader/avatarTix.jpg";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { LocalSeeOutlined } from "@material-ui/icons";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { actLogoutUser } from "containers/shared/Auth/Login/module/action";
+import { TeamOutlined } from "@ant-design/icons";
 const useStyles = makeStyles((theme) => ({
   right: {
     position: "absolute",
@@ -144,7 +143,7 @@ function TopBarHomeRight(props) {
   return (
     <div className={right}>
       <div className={accountContainer}>
-        {user ? (
+        {currentUser ? (
           <div className={classes.accountBox}>
             <StyledBadge
               overlap="circle"
@@ -158,7 +157,7 @@ function TopBarHomeRight(props) {
               <Avatar alt="avatar" title="avatar" src={AvatarTix} />
             </StyledBadge>
             <Typography className={classes.text} variant="h5">
-              {user.taiKhoan}
+              {currentUser.taiKhoan}
             </Typography>
           </div>
         ) : (
@@ -172,57 +171,61 @@ function TopBarHomeRight(props) {
       </div>
       <Divider orientation="vertical" flexItem />
       <div className={accountContainer}>
-        {user ? (
-          <div
-            className={classes.accountBox}
-            onClick={() => {
-              Swal.fire({
-                title: "Bạn có muốn đăng xuất ?",
-                showCancelButton: true,
-                confirmButtonText: `Đồng ý`,
-                cancelButtonText: "Hủy",
-                icon: "question",
+        {currentUser ? (
+          <div>
+            <div
+              className={classes.accountBox}
+              onClick={() => {
+                Swal.fire({
+                  title: "Bạn có muốn đăng xuất ?",
+                  showCancelButton: true,
+                  confirmButtonText: `Đồng ý`,
+                  cancelButtonText: "Hủy",
+                  icon: "question",
 
-                confirmButtonColor: "#fb4226",
-                cancelButtonColor: "#8bc541",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  history.push("/");
+                  confirmButtonColor: "#fb4226",
+                  cancelButtonColor: "#8bc541",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    history.push("/");
 
-                  Swal.fire({
-                    title: "Đã đăng xuất",
-                    text: "Cảm ơn bạn đã sử dụng TIX!",
-                    icon: "success",
-                    timer: "2000",
-                    showConfirmButton: false,
-                  });
-                  localStorage.removeItem("dangNhap");
-                  setUser(null);
+                    Swal.fire({
+                      title: "Đã đăng xuất",
+                      text: "Cảm ơn bạn đã sử dụng TIX!",
+                      icon: "success",
+                      timer: "2000",
+                      showConfirmButton: false,
+                    });
+                    localStorage.removeItem("dangNhap");
+                    setUser(null);
 
-                  dispatch(actLogoutUser());
-                }
-              });
-            }}
-          >
-            <ExitToAppIcon className={classes.icon} fontSize="large" />
-            <Typography className={classes.text} variant="h5">
-              Đăng xuất
-            </Typography>
-    
+                    dispatch(actLogoutUser());
+                  }
+                });
+              }}
+            >
+              <ExitToAppIcon className={classes.icon} fontSize="medium" />
+              <Typography className={classes.text} variant="h4">
+                Đăng xuất
+              </Typography>
+            </div>
+
+            {currentUser.maLoaiNguoiDung === "QuanTri" ? (
+              <Typography className={`${classes.text} mt-2`} variant="h4"
+              onClick={()=>{
+                history.push('/admin')
+              }}>
+                <TeamOutlined
+                  style={{
+                    fontSize: "20px",
+                    color: "grey",
+                    marginRight: "8px",
+                  }}
+                />
+                Trang quản lý
+              </Typography>
+            ) : null}
           </div>
-        //  <div>
-        //  <Divider orientation="vertical" flexItem />
-        //       {currentUser.maLoaiNguoiDung === "QuanTri" ? (
-        //    <div>
-
-        //    <button className="btn btn-info ml-2">Quản lý trang</button>
-        //    </div>
-
-        //  ) : (
-        //    ""
-        //  )}
-        //  </div>
-         
         ) : (
           <Link to="/register" className={classes.accountBox}>
             <PersonAddIcon className={classes.icon} fontSize="large" />

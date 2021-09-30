@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
+// import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+// import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -23,10 +23,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Alert from "@material-ui/lab/Alert";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
-import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
+// import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import {useDispatch} from "react-redux"
 import { actLoginUser } from "containers/shared/Auth/Login/module/action";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     background: `url(${BackgroundImg})`,
@@ -145,7 +145,7 @@ export default function LogIn() {
 
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors },
   } = useForm({
     mode: "onBlur",

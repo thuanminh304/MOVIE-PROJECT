@@ -2,44 +2,44 @@ import {
   Divider,
   Grid,
   // eslint-disable-next-line no-unused-vars
-  Paper,
+  
   Typography,
   Button,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { actGetMovieShowtimesApi, actBookTicket } from "./modules/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./style";
 
-import Spinner from 'react-spinner-material'
+// import Spinner from 'react-spinner-material'
 import { Fragment } from "react";
-import { CURRENTUSER } from "./modules/newconstant";
+// import { CURRENTUSER } from "./modules/newconstant";
 
 import Swal from "sweetalert2";
 import { useHistory } from "react-router";
 import LoadingPage from "../../../../components/LoadingPage";
 
 function Purchase(props) {
-  const renderLoading = () => {
-    return (
-      <div
-        style={{
-          height: "30vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderColor: "#0ff",
-        }}
-      >
-        <Spinner
-          size={120}
-          spinnerColor={"#00f"}
-          spinnerWidth={1}
-          visible={true}
-        />
-      </div>
-    );
-  };
+  // const renderLoading = () => {
+  //   return (
+  //     <div
+  //       style={{
+  //         height: "30vh",
+  //         display: "flex",
+  //         alignItems: "center",
+  //         justifyContent: "center",
+  //         borderColor: "#0ff",
+  //       }}
+  //     >
+  //       <Spinner
+  //         size={120}
+  //         spinnerColor={"#00f"}
+  //         spinnerWidth={1}
+  //         visible={true}
+  //       />
+  //     </div>
+  //   );
+  // };
   const movieShowtimes = useSelector((state) => state.movieShowtimesReducer);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -48,20 +48,20 @@ function Purchase(props) {
     dispatch(actGetMovieShowtimesApi(showtimesID));
   }, []);
   const {currentUser}=useSelector(state=>state.authUserReducer)
-  const [num, setnum] = useState(0);
-  const [flag, setFlag] = useState(false);
-  const [totalMoney, setTotalMoney] = useState(0);
-  const [selectedChair, setSelectedChair] = useState(null);
-  const chairRowArray = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"];
-  const renderChairRow = (index) => {
-    return (
-      <div className={classes.rowChairContainer}>
-        <Typography className={classes.rowChairName}>
-          {chairRowArray[index]}
-        </Typography>
-      </div>
-    );
-  };
+  // const [num, setnum] = useState(0);
+  // const [flag, setFlag] = useState(false);
+  // const [totalMoney, setTotalMoney] = useState(0);
+  // const [selectedChair, setSelectedChair] = useState(null);
+  // const chairRowArray = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"];
+  // const renderChairRow = (index) => {
+  //   return (
+  //     <div className={classes.rowChairContainer}>
+  //       <Typography className={classes.rowChairName}>
+  //         {chairRowArray[index]}
+  //       </Typography>
+  //     </div>
+  //   );
+  // };
   const renderMovieChair = (data) => {
     return data.danhSachGhe.map((chair, index) => {
       let indexChair = movieShowtimes.bookingChairList.findIndex(
@@ -105,6 +105,7 @@ function Purchase(props) {
           <Grid item xs={12} sm={12} md={8}>
             <div className={classes.chairContainer}>
               <img
+              alt=''
                 style={{ width: "100%" }}
                 src="https://tix.vn/app/assets/img/icons/screen.png"
               />
@@ -286,10 +287,10 @@ function Purchase(props) {
                       });
                       return;
                     }
-                    let userLogin = JSON.parse(
-                      localStorage.getItem(CURRENTUSER)
+                    // let userLogin = JSON.parse(
+                    //   localStorage.getItem(CURRENTUSER)
                       
-                    );
+                    // );
                     let objectAPI = {
                       maLichChieu: props.match.params.maLichChieu,
                       danhSachVe: movieShowtimes.bookingChairList,
