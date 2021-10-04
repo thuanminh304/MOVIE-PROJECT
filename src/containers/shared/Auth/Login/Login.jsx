@@ -1,22 +1,22 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { Link,useHistory,Redirect } from "react-router-dom";
-import { useDispatch ,useSelector} from "react-redux";
+import { Link, useHistory, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { actLoginUser } from "./module/action";
 import Loader from "components/Loader/Loader";
+export default function LoginAdmin(props) {
 
-export default function Login() {
   const dispatch = useDispatch();
-  const history=useHistory()
+  const history = useHistory();
   const { currentUser, loading, err } = useSelector(
     (state) => state.authUserReducer
   );
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
-    dispatch(actLoginUser(values,history));
-
+    dispatch(actLoginUser(values, history));
   };
+  console.log(props)
   if (loading) return <Loader />;
   return !currentUser ? (
     <>
@@ -65,8 +65,7 @@ export default function Login() {
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-
-         
+          
         </Form.Item>
 
         <Form.Item>
@@ -81,5 +80,7 @@ export default function Login() {
         </Form.Item>
       </Form>
     </>
-  ):(<Redirect to="/"/>)
+  ) : (
+    <Redirect to="/" />
+  );
 }

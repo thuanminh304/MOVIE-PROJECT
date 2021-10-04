@@ -14,7 +14,7 @@ import User from "containers/Admin/User/User";
 // import Home from "containers/client/Home/Home";
 import AddNewMovie from "containers/Admin/Movie/AddNewMovie";
 import Purchase from "../containers/Home/MovieChair/Purchase";
-
+import LoginAdmin from "containers/shared/Auth/Login/Login"
 export const routeHome = [
   { exact: true, path: ["/", "/home"], component: HomePage, isPrivate: false },
   {
@@ -39,12 +39,12 @@ export const routeAuth = [
   { exact: false, path: "/register", component: Register, isPrivate: false },
 ];
 export const clientRoutes = [
-  // {
-  //   component: Home,
-  //   exact: true,
-  //   isPrivate: false,
-  //   path: "/homeAdmin",
-  // },
+  {
+    component: LoginAdmin,
+    exact: true,
+    isPrivate: false,
+    path: "/homeAdmin",
+  },
 ];
 export const adminRoutes = [
   {

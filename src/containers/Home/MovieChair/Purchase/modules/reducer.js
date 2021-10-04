@@ -39,6 +39,8 @@ export const movieShowtimesReducer = (
       state.bookingChairList = newChoosingChairList;
       return { ...state };
     }
+    case "RESET_BOOKTICKET":
+      return {...state,bookingChairList:[]}
     default:
       return { ...state };
   }

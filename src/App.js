@@ -6,7 +6,7 @@ import Auth from "./containers/Auth";
 import { routeAdmin, routeAuth, routeHome } from "./routes";
 import Error from "./containers/Error";
 //
-import Login from "containers/shared/Auth/Login/Login";
+// import Login from "containers/shared/Auth/Login/Login";
 import PageNotFound from "containers/shared/PageNotFound/PageNotFound";
 import AdminLayout from "layouts/AdminLayout";
 // import { Route, Switch } from "react-router-dom";
@@ -84,9 +84,9 @@ function App() {
           {showLayoutHome(routeHome)}
 
           {showLayoutAuth(routeAuth)}
-          {/* {renderLayout(clientRoutes, ClientLayout)} */}
+          {renderLayout(clientRoutes, ClientLayout)}
           {renderLayout(adminRoutes, AdminLayout)}
-          <Route path="/login" component={Login} />
+          {/* <Route path="/login" component={Login} /> */}
           <Route path="*" component={PageNotFound} />
           {/* Không tìm ra trang nào */}
           <Route path="" component={Error} />

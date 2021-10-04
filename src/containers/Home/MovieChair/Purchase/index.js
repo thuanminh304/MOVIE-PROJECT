@@ -2,12 +2,15 @@ import {
   Divider,
   Grid,
   // eslint-disable-next-line no-unused-vars
-  
   Typography,
   Button,
 } from "@material-ui/core";
 import React, { useEffect } from "react";
-import { actGetMovieShowtimesApi, actBookTicket } from "./modules/action";
+import {
+  actGetMovieShowtimesApi,
+  actBookTicket,
+  actResetBookticket,
+} from "./modules/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./style";
 
@@ -20,26 +23,6 @@ import { useHistory } from "react-router";
 import LoadingPage from "../../../../components/LoadingPage";
 
 function Purchase(props) {
-  // const renderLoading = () => {
-  //   return (
-  //     <div
-  //       style={{
-  //         height: "30vh",
-  //         display: "flex",
-  //         alignItems: "center",
-  //         justifyContent: "center",
-  //         borderColor: "#0ff",
-  //       }}
-  //     >
-  //       <Spinner
-  //         size={120}
-  //         spinnerColor={"#00f"}
-  //         spinnerWidth={1}
-  //         visible={true}
-  //       />
-  //     </div>
-  //   );
-  // };
   const movieShowtimes = useSelector((state) => state.movieShowtimesReducer);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -47,21 +30,8 @@ function Purchase(props) {
     let showtimesID = props.match.params.maLichChieu;
     dispatch(actGetMovieShowtimesApi(showtimesID));
   }, []);
-  const {currentUser}=useSelector(state=>state.authUserReducer)
-  // const [num, setnum] = useState(0);
-  // const [flag, setFlag] = useState(false);
-  // const [totalMoney, setTotalMoney] = useState(0);
-  // const [selectedChair, setSelectedChair] = useState(null);
-  // const chairRowArray = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"];
-  // const renderChairRow = (index) => {
-  //   return (
-  //     <div className={classes.rowChairContainer}>
-  //       <Typography className={classes.rowChairName}>
-  //         {chairRowArray[index]}
-  //       </Typography>
-  //     </div>
-  //   );
-  // };
+  let { currentUser } = useSelector((state) => state.authUserReducer);
+
   const renderMovieChair = (data) => {
     return data.danhSachGhe.map((chair, index) => {
       let indexChair = movieShowtimes.bookingChairList.findIndex(
@@ -96,16 +66,23 @@ function Purchase(props) {
     });
   };
   const classes = useStyles();
-  return currentUser ? (
+  let ggUser = {};
+  if (localStorage.getItem("ggUser")) {
+    let ggUser = JSON.parse(localStorage.getItem("ggUser"));
+    currentUser = ggUser;
+    currentUser.taiKhoan = ggUser.name;
+  }
+
+  return currentUser || ggUser ? (
     <div className={classes.root}>
       {movieShowtimes.loading ? (
-        <LoadingPage/>
+        <LoadingPage />
       ) : (
         <Grid container>
           <Grid item xs={12} sm={12} md={8}>
             <div className={classes.chairContainer}>
               <img
-              alt=''
+                alt=""
                 style={{ width: "100%" }}
                 src="https://tix.vn/app/assets/img/icons/screen.png"
               />
@@ -263,21 +240,6 @@ function Purchase(props) {
                 <Divider variant="middle" />
                 <Button
                   onClick={() => {
-                    // if (!localStorage.getItem(CURRENTUSER)) {
-                    //   Swal.fire({
-                    //     icon: "error",
-                    //     title: "Bạn chưa đăng nhập",
-                    //     text: "Bạn có muốn đăng nhập không ?",
-                    //     confirmButtonText: "Đồng ý",
-                    //     showDenyButton: true,
-                    //     denyButtonText: "Không",
-                    //   }).then((result) => {
-                    //     if (result.isConfirmed) {
-                    //       history.push("/sign-in");
-                    //     }
-                    //   });
-                    //   return;
-                    // }
                     if (movieShowtimes.bookingChairList.length === 0) {
                       Swal.fire({
                         icon: "error",
@@ -287,33 +249,34 @@ function Purchase(props) {
                       });
                       return;
                     }
-                    // let userLogin = JSON.parse(
-                    //   localStorage.getItem(CURRENTUSER)
-                      
-                    // );
+
                     let objectAPI = {
                       maLichChieu: props.match.params.maLichChieu,
                       danhSachVe: movieShowtimes.bookingChairList,
                       taiKhoanNguoiDung: currentUser.taiKhoan,
                     };
-                    console.log(objectAPI);
-                    const action = actBookTicket(objectAPI);
+                    console.log("datve", objectAPI);
+                    const action = actBookTicket(
+                      objectAPI,
+                      currentUser.accessToken
+                    );
                     dispatch(action);
                     Swal.fire({
                       icon: "success",
                       title: "Đặt vé thành công",
-                      text: "Kiểm tra trong lịch sử đặt vé",
+                      
                       confirmButtonText: "Đồng ý",
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        history.push('/')
+                        history.push("/");
                         dispatch(
                           actGetMovieShowtimesApi(
                             props.match.params.maLichChieu
                           )
                         );
+                        dispatch(actResetBookticket());
                       } else {
-                        history.push('/')
+                        history.push("/");
 
                         dispatch(
                           actGetMovieShowtimesApi(
@@ -329,23 +292,23 @@ function Purchase(props) {
                 </Button>
               </div>
             </Grid>
-          ) }
+          )}
         </Grid>
       )}
     </div>
-  ):(
+  ) : (
     Swal.fire({
-          icon: "error",
-          title: "Bạn chưa đăng nhập",
-          text: "Bạn có muốn đăng nhập không ?",
-          confirmButtonText: "Đồng ý",
-          showDenyButton: true,
-          denyButtonText: "Không",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            history.replace("/sign-in");
-          }
-        })
+      icon: "error",
+      title: "Bạn chưa đăng nhập",
+      text: "Bạn có muốn đăng nhập không ?",
+      confirmButtonText: "Đồng ý",
+      showDenyButton: true,
+      denyButtonText: "Không",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.replace("/sign-in");
+      }
+    })
   );
 }
 export default Purchase;

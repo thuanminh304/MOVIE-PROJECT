@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+//import firebase
+// import withFirebaseAuth from "react-with-firebase-auth";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 // import CssBaseline from "@material-ui/core/CssBaseline";
@@ -24,8 +26,10 @@ import Swal from "sweetalert2";
 import Alert from "@material-ui/lab/Alert";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
 // import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import {useDispatch} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { actLoginUser } from "containers/shared/Auth/Login/module/action";
+// import {firebase} from "firebaseConfig";
+import { GoogleLogin } from "react-google-login";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -124,14 +128,33 @@ const schema = yup.object().shape({
   matKhau: yup.string().required("Vui lòng nhập mật khẩu !"),
 });
 
-export default function LogIn() {
-  const classes = useStyles();
+function LogIn(props) {
   const history = useHistory();
+
+  //gg login
+  let ggUser={};
+  const loginSuccessGG = (res) => {
+
+    localStorage.setItem("ggUser", JSON.stringify(res.profileObj));
+    if (localStorage.getItem("ggUser")) {
+      ggUser = JSON.parse(localStorage.getItem("ggUser"));
+    }
+    console.log("gguser", ggUser);
+
+       history.push("/");
+    // dispatch(actFetchLogin(res.profileObj,histoty))
+  };
+  const loginFailureGG = (res) => {
+    console.log("failure", res);
+  };
+  /////////////////////
+
+  const classes = useStyles();
 
   const [loginError, setLoginError] = useState(null);
   const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [user, setUser] = useState({
+  const [userC, setUser] = useState({
     taiKhoan: "",
     matKhau: "",
   });
@@ -157,7 +180,7 @@ export default function LogIn() {
     const value = event.target.value;
 
     setUser({
-      ...user,
+      ...userC,
       [name]: value,
     });
   };
@@ -200,7 +223,7 @@ export default function LogIn() {
         setLoginError(error.response.data);
       });
   };
-const dispatch=useDispatch()
+  const dispatch = useDispatch();
   return (
     <div className={classes.root}>
       <Container className={classes.main} component="main" maxWidth="xs">
@@ -228,7 +251,7 @@ const dispatch=useDispatch()
               {...register("taiKhoan")}
               error={!!errors.taiKhoan}
               helperText={errors?.taiKhoan?.message}
-              value={user.taiKhoan}
+              value={userC.taiKhoan}
               onChange={handleChange}
               InputLabelProps={{
                 style: { color: "#fff" },
@@ -251,7 +274,7 @@ const dispatch=useDispatch()
               {...register("matKhau")}
               error={!!errors.matKhau}
               helperText={errors?.matKhau?.message}
-              value={user.matKhau}
+              value={userC.matKhau}
               onChange={handleChange}
               InputLabelProps={{
                 style: { color: "#fff" },
@@ -299,12 +322,22 @@ const dispatch=useDispatch()
               className={classes.submit}
               onClick={(event) => {
                 event.preventDefault();
-                onSubmit(user);
-                dispatch(actLoginUser(user))
+                onSubmit(userC);
+                dispatch(actLoginUser(userC));
               }}
             >
               Đăng Nhập
             </Button>
+            {/* button login GG */}
+            <GoogleLogin
+              clientId="639960842870-to56prpvcbin9d23hd5r14ukh7edsgbg.apps.googleusercontent.com"
+              buttonText="Sign In"
+              onSuccess={loginSuccessGG}
+              onFailure={loginFailureGG}
+              cookiePolicy={"single_host_origin"}
+              isSignedIn={false}
+            />
+            {/*  */}
             <Grid container justify="flex-end">
               <Grid item>
                 <Link
@@ -325,3 +358,5 @@ const dispatch=useDispatch()
     </div>
   );
 }
+
+export default LogIn;

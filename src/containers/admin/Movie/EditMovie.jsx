@@ -83,14 +83,15 @@ export default function EditMovie() {
     let file = e.target.files[0];
     // tạo đối tượng để đọc file hiển thị ảnh
     if (file) {
-      formik.setFieldValue("hinhAnh", file);
 
       let readFile = new FileReader();
       readFile.readAsDataURL(file);
-      setImgSrc(readFile.result);
+      // setImgSrc(readFile.result);
       readFile.onload = function (e) {
         setImgSrc(e.target.result);
       };
+      formik.setFieldValue("hinhAnh", file);
+
     }
   };
 // tạo biến riêng để tránh sử dụng lại nhiều ảnh hưởng performance

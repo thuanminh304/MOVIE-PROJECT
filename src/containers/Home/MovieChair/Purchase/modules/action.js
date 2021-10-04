@@ -9,7 +9,6 @@ export const actGetMovieShowtimesApi = (showTimesID) => {
       method: "GET",
     })
       .then((result) => {
-
         dispatch(actGetMovieShowTimesSuccess(result.data));
       })
       .catch((error) => {
@@ -36,26 +35,38 @@ const actGetMovieShowTimesFailed = (error) => {
     payload: error,
   };
 };
-export const actBookTicket = (ticketInfo) => {
+export const actBookTicket = (taiKhoan) => {
   return async (dispatch) => {
     try {
       const result = await axios({
         url: "https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
         method: "POST",
-        data: ticketInfo,
-        headers: {
-          Authorization: `Bearer ${
-            JSON.parse(localStorage.getItem("currentUser")).accessToken
-          }`,
-        },
+        data: taiKhoan,
+        headers: JSON.parse(localStorage.getItem("dangNhap")).accessToken
+          ? {
+              Authorization: `Bearer ${
+                JSON.parse(localStorage.getItem("dangNhap")).accessToken
+              }`,
+            }
+          : null,
       });
 
       if (result.status === 200) {
         // window.location.reload();
       }
+      console.log("sucess", result.data);
     } catch (error) {
-      console.log(localStorage.getItem(TOKEN));
+      console.log("token", localStorage.getItem(TOKEN));
       console.log("error", error.response?.data);
+      console.log("err1", error);
     }
+  };
+};
+
+export const actResetBookticket = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "RESET_BOOKTICKET",
+    });
   };
 };

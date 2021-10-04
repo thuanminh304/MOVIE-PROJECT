@@ -44,6 +44,9 @@ const userApi = {
       accessToken
     );
   },
+  bookTicket(thongTinDatVe, token) {
+    return callApiMovie("QuanLyDatVe/DatVe", "POST", thongTinDatVe, token);
+  },
 };
 
 export default userApi;
