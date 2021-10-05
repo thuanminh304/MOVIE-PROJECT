@@ -63,10 +63,10 @@ export const actBookTicket = (taiKhoan) => {
   };
 };
 
-export const actResetBookticket = () => {
-  return (dispatch) => {
+export const actResetBookticket=()=>{
+  return dispatch=>{
     dispatch({
-      type: "RESET_BOOKTICKET",
-    });
-  };
-};
+      type:"RESET_BOOKTICKET"
+    })
+  }
+}
