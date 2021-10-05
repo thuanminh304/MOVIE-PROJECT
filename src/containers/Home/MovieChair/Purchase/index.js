@@ -73,7 +73,7 @@ function Purchase(props) {
     currentUser.taiKhoan = ggUser.name;
   }
 
-  return currentUser || ggUser ? (
+  return currentUser ? (
     <div className={classes.root}>
       {movieShowtimes.loading ? (
         <LoadingPage />
@@ -264,7 +264,7 @@ function Purchase(props) {
                     Swal.fire({
                       icon: "success",
                       title: "Đặt vé thành công",
-                      
+
                       confirmButtonText: "Đồng ý",
                     }).then((result) => {
                       if (result.isConfirmed) {
@@ -305,9 +305,11 @@ function Purchase(props) {
       showDenyButton: true,
       denyButtonText: "Không",
     }).then((result) => {
-      if (result.isConfirmed) {
-        history.replace("/sign-in");
-      }
+        history.push("/login");
+
+      // if (result.isConfirmed) {
+      //   history.push("/login");
+      // }
     })
   );
 }

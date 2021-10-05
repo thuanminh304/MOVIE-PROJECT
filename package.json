@@ -2,8 +2,8 @@
   "name": "cinema",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://thuanminh304.github.io/MOVIE-PROJECT",
-  
+  "homepage": "https://thuanminh304.github.io/home",
+
   "dependencies": {
     "@hookform/resolvers": "^2.6.0",
     "@material-ui/core": "^4.11.4",

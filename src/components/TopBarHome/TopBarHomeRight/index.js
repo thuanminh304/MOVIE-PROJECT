@@ -139,7 +139,14 @@ function TopBarHomeRight(props) {
   );
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser } = useSelector((state) => state.authUserReducer);
+  let { currentUser } = useSelector((state) => state.authUserReducer);
+  let ggUser = {};
+  if (localStorage.getItem("ggUser")) {
+    ggUser = JSON.parse(localStorage.getItem("ggUser"));
+    currentUser = ggUser;
+    currentUser.taiKhoan = ggUser.name;
+  }
+
   return (
     <div className={right}>
       <div className={accountContainer}>
@@ -197,6 +204,7 @@ function TopBarHomeRight(props) {
                       showConfirmButton: false,
                     });
                     localStorage.removeItem("dangNhap");
+                    localStorage.removeItem("ggUser");
                     setUser(null);
 
                     dispatch(actLogoutUser());
@@ -211,10 +219,13 @@ function TopBarHomeRight(props) {
             </div>
 
             {currentUser.maLoaiNguoiDung === "QuanTri" ? (
-              <Typography className={`${classes.text} mt-2`} variant="h4"
-              onClick={()=>{
-                history.push('/admin')
-              }}>
+              <Typography
+                className={`${classes.text} mt-2`}
+                variant="h4"
+                onClick={() => {
+                  history.push("/admin");
+                }}
+              >
                 <TeamOutlined
                   style={{
                     fontSize: "20px",
