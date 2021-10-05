@@ -2,7 +2,7 @@
   "name": "cinema",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://thuanminh304.github.io/home",
+  "homepage": "https://thuanminh304.github.io/MOVIE-PROJECT",
 
   "dependencies": {
     "@hookform/resolvers": "^2.6.0",
