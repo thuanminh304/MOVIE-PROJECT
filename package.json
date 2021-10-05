@@ -1,8 +1,9 @@
 {
   "name": "cinema",
+  "homepage": "https://movieproj.surge.sh",
+
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://thuanminh304.github.io/MOVIE-PROJECT",
 
   "dependencies": {
     "@hookform/resolvers": "^2.6.0",

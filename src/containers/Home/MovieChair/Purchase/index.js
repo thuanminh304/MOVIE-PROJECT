@@ -304,13 +304,17 @@ function Purchase(props) {
       confirmButtonText: "Đồng ý",
       showDenyButton: true,
       denyButtonText: "Không",
-    }).then((result) => {
+    })
+      .then((result) => {
         history.push("/login");
 
-      // if (result.isConfirmed) {
-      //   history.push("/login");
-      // }
-    })
+        // if (result.isConfirmed) {
+        //   history.push("/login");
+        // }
+      })
+      .catch((err) => {
+        history.push("/login");
+      })
   );
 }
 export default Purchase;

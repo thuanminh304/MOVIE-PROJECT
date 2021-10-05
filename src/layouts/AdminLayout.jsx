@@ -45,16 +45,28 @@ function AdminLayout(props) {
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
           <Header className="site-layout-background" style={{ padding: 0 }}>
-            <div className="ml-auto">
-              <Link to="/">
-                <button className="btn btn-success">Trang chủ</button>
-              </Link>
-              <button
-                className="btn btn-danger ml-2"
-                onClick={handleLogoutUser}
-              >
-                Đăng xuất
-              </button>
+            <div className="ml-auto row">
+              <Menu className="menuRes413 col-6" theme="dark" mode="inline">
+                <Menu.Item key="1" icon={<TeamOutlined />}>
+                  <Link to="/admin/user">User</Link>
+                </Menu.Item>
+
+                <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+                  <Link to="/admin/movie">Movie</Link>
+                </Menu.Item>
+              </Menu>
+              <div className="col-6">
+                <Link to="/">
+                  <button className="btn btn-success">Trang chủ</button>
+                </Link>
+
+                <button
+                  className="btn btn-danger ml-2"
+                  onClick={handleLogoutUser}
+                >
+                  Đăng xuất
+                </button>
+              </div>
             </div>
           </Header>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>

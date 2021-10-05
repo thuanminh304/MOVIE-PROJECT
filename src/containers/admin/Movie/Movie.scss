@@ -2,20 +2,21 @@
 
 .styleErrors {
   p {
-    color: red
+    color: red;
   }
 }
-
-@include responsive_736{
-  .ant-form{
-    .ant-form-item-label{
+.menuRes413 {
+  display: none;
+}
+@include responsive_736 {
+  .ant-form {
+    .ant-form-item-label {
       display: none;
     }
-    
   }
 }
-@include responsive_414{
-  .tableMovie{
+@include responsive_414 {
+  .tableMovie {
     .ant-table {
       font-size: 10px;
       margin: 0 -25px 0;
@@ -58,17 +59,29 @@
       }
     }
   }
-  .btnEditMovie{
+  .btnEditMovie {
     position: relative;
-    button{
-      &:first-child{
+    button {
+      &:first-child {
         position: absolute;
         left: 0;
       }
-      &:last-child{
+      &:last-child {
         position: absolute;
         right: 0;
       }
     }
+  }
+}
+
+@include responsive-413 {
+  .ant-layout-sider{
+    display:none
+  }
+  .ant-layout{
+    margin-left: 0 !important;
+  }
+  .menuRes413 {
+    display: block;
   }
 }
