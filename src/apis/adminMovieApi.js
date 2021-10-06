@@ -1,5 +1,6 @@
 import { GROUP_ID } from "settings/apiConfig";
 import callApiMovie from "utils/callApiMovie";
+//
 const adminMovieApi = {
   getAllMovie(tenPhim = "") {
     if (tenPhim !== "") {
